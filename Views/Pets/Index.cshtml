@@ -1,0 +1,8 @@
+@model IEnumerable<sistema.Models.Pet>
+ <h1>Pets</h1>
+@if (TempData["Erro"] != null) { <div class="alert alert-danger">@TempData["Erro"]</div> }
+ <a asp-action="Create" class="btn btn-success mb-3">Novo pet</a>
+ <table class="table table-striped"><thead><tr><th>Nome</th><th>Espécie</th><th>Raça</th><th>Tutor</th><th>Ações</th></tr></thead><tbody>
+ @foreach (var p in Model) { <tr><td>@p.Nome</td><td>@p.Especie</td><td>@p.Raca</td><td>@p.Tutor.Nome</td><td><a
+asp-action="Edit" asp-route-id="@p.Id">Editar</a> | <a asp-action="Delete" asp-route-id="@p.Id">Excluir</a></td></tr> }
+ </tbody></table>

@@ -1,0 +1,24 @@
+@model sistema.ViewModels.AgendamentoFormViewModel
+<h1>Editar agendamento</h1>
+<form asp-action="Edit" method="post">
+<div asp-validation-summary="All" class="text-danger"></div>
+<input asp-for="Id" type="hidden" />
+<div class="mb-3"><label asp-for="DataHora" class="form-label"></label>
+<input asp-for="DataHora" type="datetime-local" class="form-control" />
+<span asp-validation-for="DataHora" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="TutorId" class="form-label"></label>
+<select asp-for="TutorId" asp-items="Model.Tutores" class="form-select"><option value="">Selecione...</option></select>
+<span asp-validation-for="TutorId" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="PetId" class="form-label"></label>
+<select asp-for="PetId" asp-items="Model.Pets" class="form-select"><option value="">Selecione...</option></select>
+<span asp-validation-for="PetId" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Motivo" class="form-label"></label>
+<input asp-for="Motivo" type="text" class="form-control" />
+<span asp-validation-for="Motivo" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Status" class="form-label"></label>
+<select asp-for="Status" class="form-select"><option>Agendado</option><option>Concluído</option><option>Cancelado</option></select>
+<span asp-validation-for="Status" class="text-danger"></span></div>
+<button type="submit" class="btn btn-primary">Salvar</button>
+<a asp-action="Index" class="btn btn-secondary">Voltar</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

@@ -1,0 +1,13 @@
+﻿@{
+      ViewData["Title"] = "Início";
+ }
+ <h1>Clínica Veterinária</h1>
+ <h3>Bem-vindo, @User.Identity?.Name!</h3>
+ <div class="d-flex gap-2 mt-4">
+     <a asp-controller="Tutores" asp-action="Index" class="btn btn-primary">Tutores</a>
+     <a asp-controller="Pets" asp-action="Index" class="btn btn-primary">Pets</a>
+     <a asp-controller="Agendamentos" asp-action="Index" class="btn btn-primary">Agendamentos</a>
+ </div>
+ <form asp-controller="Account" asp-action="Logout" method="post" class="mt-4">
+     <button type="submit" class="btn btn-outline-danger">Sair</button>
+ </form>

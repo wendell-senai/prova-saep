@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Clínica Veterinária</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+<header><nav class="navbar navbar-expand navbar-light bg-light mb-3"><div class="container flex-wrap">
+    <a class="navbar-brand" asp-controller="Home" asp-action="Index">Clínica Veterinária</a>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="d-flex gap-3 flex-wrap">
+            <a asp-controller="Home" asp-action="Index">Início</a>
+            <a asp-controller="Tutores" asp-action="Index">Tutores</a>
+            <a asp-controller="Pets" asp-action="Index">Pets</a>
+            <a asp-controller="Agendamentos" asp-action="Index">Agendamentos</a>
+            <span>@User.Identity.Name</span>
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="btn btn-sm btn-outline-danger">Sair</button>
+            </form>
+        </div>
+    }
+</div></nav></header>
+<div class="container"><main role="main" class="pb-3">@RenderBody()</main></div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body></html>

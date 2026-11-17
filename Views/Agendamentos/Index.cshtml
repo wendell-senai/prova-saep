@@ -1,0 +1,21 @@
+@model IEnumerable<sistema.Models.Agendamento>
+@inject sistema.Services.CriptografiaService Crypto
+<h1>Agendamentos</h1>
+<a asp-action="Create" class="btn btn-success mb-3">Novo agendamento</a>
+<div class="table-responsive"><table class="table table-striped">
+<thead><tr><th>Id / Data</th><th>Tutor (todos os dados)</th><th>Pet (todos os dados)</th><th>Motivo</th><th>Status</th><th>Ações</th></tr></thead>
+<tbody>
+@foreach (var a in Model)
+{
+    <tr><td>@a.DataHora.ToString("dd/MM/yyyy HH:mm")</td>
+    <td>Id: @a.Tutor.Id | @a.Tutor.Nome<br />CPF: @Crypto.Descriptografar(a.Tutor.CpfCriptografado)<br />
+    Telefone: @a.Tutor.Telefone<br />E-mail: @a.Tutor.Email</td>
+    <td>Id: @a.Pet.Id | @a.Pet.Nome<br />Espécie: @a.Pet.Especie<br />Raça: @(a.Pet.Raca ?? "Não informada")<br />
+    Nascimento: @(a.Pet.DataNascimento?.ToString("dd/MM/yyyy") ?? "Não informado")<br />TutorId: @a.Pet.TutorId</td>
+    <td>@a.Motivo</td><td>@a.Status</td><td>
+    Agendamento: @a.Id<br /><a asp-action="Edit" asp-route-id="@a.Id">Editar</a>
+    <form asp-action="Delete" asp-route-id="@a.Id" method="post" class="d-inline">
+        <button type="submit" class="btn btn-link text-danger p-0" onclick="return confirm('Excluir agendamento?')">Excluir</button>
+    </form></td></tr>
+}
+</tbody></table></div>
